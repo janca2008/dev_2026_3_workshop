@@ -167,7 +167,7 @@ class Conversion:
             texto_a_morse("SOS") -> "... --- ..."
             texto_a_morse("HELLO") -> ".... . .-.. .-.. ---"
         """
-        CODIGO_MORSE = {
+        self.texto_a_morse = {
             'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
             'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
             'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---',
@@ -179,7 +179,7 @@ class Conversion:
             '8': '---..', '9': '----.'
         }
         texto = texto.upper()
-        letras_morse = [CODIGO_MORSE[char] for char in texto if char in CODIGO_MORSE]
+        letras_morse = [self.texto_a_morse[char] for char in texto if char in self.texto_a_morse]
         return ' '.join(letras_morse)
     def morse_a_texto(self, morse):
         """
@@ -195,6 +195,6 @@ class Conversion:
             morse_a_texto("... --- ...") -> "SOS"
             morse_a_texto(".... . .-.. .-.. ---") -> "HELLO"
         """
-        valores = {v: k for k, v in CODIGO_MORSE.items()}
+        valores = {v: k for k, v in self.texto_a_morse.items()}
         letras = morse.split(' ')
         return ''.join(valores.get(letra, '') for letra in letras)  
