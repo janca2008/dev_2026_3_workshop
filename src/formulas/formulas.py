@@ -19,6 +19,8 @@ class Formulas:
         Ejemplo:
             velocidad_media(100, 10) -> 10.0
         """
+        
+        
         return distancia / tiempo
 
     def mruv_posicion(self, posicion_inicial, velocidad_inicial, aceleracion, tiempo):
@@ -39,7 +41,7 @@ class Formulas:
         Ejemplo:
             mruv_posicion(0, 2, 1, 3) -> 10.5
         """
-        pass
+        return posicion_inicial + velocidad_inicial * tiempo + 0.5 * aceleracion * tiempo ** 2
 
     def mruv_velocidad(self, velocidad_inicial, aceleracion, tiempo):
         """
@@ -58,8 +60,7 @@ class Formulas:
         Ejemplo:
             mruv_velocidad(2, 1, 3) -> 5.0
         """
-        pass
-
+        return velocidad_inicial + aceleracion * tiempo
     def fuerza_newton(self, masa, aceleracion):
         """
         Calcula la fuerza según la segunda ley de Newton.
@@ -76,7 +77,7 @@ class Formulas:
         Ejemplo:
             fuerza_newton(10, 2) -> 20.0
         """
-        pass
+        return masa * aceleracion
 
     def energia_cinetica(self, masa, velocidad):
         """
@@ -94,7 +95,7 @@ class Formulas:
         Ejemplo:
             energia_cinetica(2, 3) -> 9.0
         """
-        pass
+        return 0.5 * masa * velocidad ** 2
 
     def energia_potencial(self, masa, altura, gravedad=9.8):
         """
@@ -113,7 +114,7 @@ class Formulas:
         Ejemplo:
             energia_potencial(2, 5) -> 98.0
         """
-        pass
+        return masa * gravedad * altura
 
     def ley_ohm_voltaje(self, corriente, resistencia):
         """
@@ -131,7 +132,7 @@ class Formulas:
         Ejemplo:
             ley_ohm_voltaje(2, 5) -> 10.0
         """
-        pass
+        return corriente * resistencia
 
     def ley_ohm_corriente(self, voltaje, resistencia):
         """
@@ -149,7 +150,7 @@ class Formulas:
         Ejemplo:
             ley_ohm_corriente(10, 5) -> 2.0
         """
-        pass
+        return voltaje / resistencia
 
     def interes_simple(self, capital, tasa, tiempo):
         """
@@ -168,7 +169,7 @@ class Formulas:
         Ejemplo:
             interes_simple(1000, 0.05, 2) -> 100.0
         """
-        pass
+        return capital * tasa * tiempo
 
     def interes_compuesto(self, capital, tasa, tiempo, n=1):
         """
@@ -188,7 +189,7 @@ class Formulas:
         Ejemplo:
             interes_compuesto(1000, 0.05, 2) -> 1102.5
         """
-        pass
+        return capital * (1 + tasa / n) ** (n * tiempo)
 
     def discriminante(self, a, b, c):
         """
@@ -207,7 +208,7 @@ class Formulas:
         Ejemplo:
             discriminante(1, -3, 2) -> 1
         """
-        pass
+        return b ** 2 - 4 * a * c
 
     def raices_cuadraticas(self, a, b, c):
         """
@@ -227,7 +228,13 @@ class Formulas:
         Ejemplo:
             raices_cuadraticas(1, -3, 2) -> (2.0, 1.0)
         """
-        pass
+        discriminante = self.discriminante(a, b, c)
+        if discriminante < 0:
+            raise ValueError("El discriminante es negativo, no hay raíces reales")
+        sqrt_discriminante = discriminante ** 0.5
+        raiz1 = (-b + sqrt_discriminante) / (2 * a)
+        raiz2 = (-b - sqrt_discriminante) / (2 * a)
+        return raiz1, raiz2
 
     def imc(self, peso, altura):
         """
@@ -245,7 +252,7 @@ class Formulas:
         Ejemplo:
             imc(70, 1.75) -> 22.86
         """
-        pass
+        return peso / altura ** 2
 
     def hipotenusa_pitagoras(self, cateto1, cateto2):
         """
@@ -263,4 +270,6 @@ class Formulas:
         Ejemplo:
             hipotenusa_pitagoras(3, 4) -> 5.0
         """
-        pass
+        return (cateto1 ** 2 + cateto2 ** 2) ** 0.5
+    
+    

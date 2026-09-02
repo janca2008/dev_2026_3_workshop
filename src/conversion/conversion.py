@@ -179,6 +179,7 @@ class Conversion:
         texto = texto.upper()
         letras_morse = [self.texto_a_morse[char] for char in texto if char in self.texto_a_morse]
         return ' '.join(letras_morse)
+    
     def morse_a_texto(self, morse):
         """
         Convierte código Morse a texto.
@@ -196,3 +197,4 @@ class Conversion:
         valores = {v: k for k, v in self.texto_a_morse.items()}
         letras = morse.split(' ')
         return ''.join(valores.get(letra, '') for letra in letras)  
+    
